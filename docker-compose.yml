@@ -34,4 +34,11 @@ services:
       # ファイル変更の監視機能を有効化
       # MacやWindowsでファイル変更を正しく検知するため
       # （Linuxコンテナとの違いを吸収）
+      # 定期的にファイルをチェックしに行く　Next.js全般のファイル監視
       - CHOKIDAR_USEPOLLING=true
+      # Webpack（Next.jsの内部で使用）のファイル監視もポーリング方式に変更  Webpackのホットリロード機能のファイル監視
+      - WATCHPACK_POLLING=true
+      # 開発モード Node.jsアプリケーションを「開発モード」で実行
+      - NODE_ENV=development
+    # 開発サーバーで起動（リアルタイム更新対応）
+    command: npm run dev -- -p 3001
